@@ -1,0 +1,119 @@
+<div>
+    <div class="w-100 pb-2">
+        <header class="d-flex justify-content-lg-between  px-4 align-items-center border border-b">
+           <div>
+            <img src="assets/images/dollar-sign-incorporated-with-shopping-cart-5403ld.png" width="200px" height="100px">
+           </div>
+           <div>
+            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                <div class="d-flex gap-2">
+                  <a (click)="Addproductfunc()" class="btn btn-primary p-2 Add-Product" >Add Product</a>
+                  <a class="btn btn-danger p-2 Buy-Product" (click)="navigato()">Buy Product</a>
+                </div>
+              </nav>
+           </div>
+        </header>
+        <div *ngIf="Addproduct" class="w-100 h-100 top-0 left-0 rigth-0 position-fixed fixed-screen  bg-opacity-75 bg-black" >
+            <div class="d-flex w-100 h-100 justify-content-center  align-items-center">
+                <div class="add-product   container">
+                    <form #productform="ngForm" (ngSubmit)="SubmitProductDet(productform)">
+                        <div class="row">
+                            <div class="col-lg-6 col-12">
+                                <label for="productName" class="form-label">Product Name</label>
+                                <input type="text" class="form-control"  name="productname"  [(ngModel)]="product.productname" pattern="^[a-zA-Z]+$"  required>
+                                <span *ngIf="productform.controls['productname']?.invalid && (productform.controls['productname']?.touched||productform.controls['productname']?.dirty)">
+                                    <span *ngIf="productform.controls['productname']?.errors?.['required']">
+                                        <p class="text-danger pt-2">Invalid Product Name</p>
+                                    </span>
+                                    <span *ngIf="productform.controls['productname']?.errors?.['pattern']">
+                                        <p class="text-danger pt-2">Entered only Characters</p>
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="col-lg-6 col-12">
+                                <label for="Product Quantity" class="form-label">Product Quantity</label>
+                                <input type="number" class="form-control"  name="productquantity" [(ngModel)]="product.productquantity" required>
+                                <span *ngIf="productform.controls?.['productquantity']?.invalid && (productform.controls?.['productquantity']?.touched||productform.controls?.['productquantity']?.dirty)">
+                                    <span *ngIf="productform.controls?.['productquantity']?.errors?.['required']">
+                                        <p class="text-danger pt-2">Invalid Please Entered Quantity</p>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            
+                            <div class="col-lg-6 col-12">
+                                <label for="Department" class="form-label">Section</label>
+                                <input type="text" class="form-control" name="section" [(ngModel)]="product.section" pattern="^[a-zA-Z]+$"   required style="text-transform: uppercase;" >
+                                <span *ngIf="productform.controls['section']?.invalid && (productform.controls['section']?.touched||productform.controls['section']?.dirty)">
+                                    <span *ngIf="productform.controls['section']?.errors?.['required']">
+                                        <p class="text-danger pt-2">Invalid Please Entered Product Section</p>
+                                    </span>
+                                    <span *ngIf="productform.controls['section']?.errors?.['pattern']">
+                                        <p class="text-danger pt-2">Entered only Characters</p>
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="col-lg-6 col-12">
+                                <label for="Price" class="form-label">Price</label>
+                                <input type="number" class="form-control" name="price" [(ngModel)]="product.price"   required>
+                                <span *ngIf="productform.controls?.['price']?.invalid && (productform.controls?.['price']?.touched||productform.controls?.['price']?.dirty)">
+                                    <span *ngIf="productform.controls?.['price']?.errors?.['required']">
+                                        <p class="text-danger pt-2">Invalid Please Entered Quantity</p>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="d-flex w-full pt-4 justify-content-lg-end justify-content-center">
+
+                            <div class=" d-flex gap-4">
+                                <div class="">
+                                    <p (click)="Addproduct=false"  class="btn btn-danger">Cancel</p>
+                                </div>
+                                <div class="">
+                                    <button type="submit" value="submit" class="btn btn-primary" [disabled]="productform.invalid">Submit</button>
+                                </div>
+
+                            </div>
+                        </div>
+                       
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <div>
+            
+            <div class="container py-5 ">
+                <h3 class="">Product Details</h3>
+                <table class="table table-responsive table-striped table-bordered rounded border">
+                    <thead>
+                        <tr>
+                            <th class="bg-black text-white py-3 ">Product ID</th>
+                            <th class="bg-black text-white py-3 ">Product Name</th>
+                            <th class="bg-black text-white py-3 ">Product Quantity</th>
+                            <th class="bg-black text-white py-3 ">Section</th>
+                            <th class="bg-black text-white py-3 ">Price</th>
+                            <th class="bg-black text-white py-3 ">Modify</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let product of AllProducts let i=index">
+                          <td>{{i+1}}</td>
+                          <td>{{product.productname}}</td>
+                          <td>{{product.productquantity}}</td>
+                          <td>{{product.section}}</td>
+                          <td>{{product.price}}</td>
+                          <td class="d-flex justify-content-center gap-3">
+                            <img src="assets/images/5334827.png" width="30px" height="30px" class="cursor-pointer" (click)="updateproduct(i)">
+                            <img src="assets/images/9790368.png" width="30px" height="30px" class="cursor-pointer" (click)="editproduct(i)">
+                          </td>
+
+                        </tr>
+                        </tbody>
+                </table>
+                
+            </div>
+        </div>
+    </div>
+</div>

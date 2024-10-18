@@ -1,0 +1,24 @@
+# Node.js specific
+node_modules/
+npm-debug.log
+
+# Editor config files
+*.swp
+*.bak
+*.tmp
+*.log
+*.sync
+
+# Mac OS specific
+.DS_Store
+
+# IDE specific
+*.suo
+*.user
+*.csproj
+*.sln
+
+# Angular specific
+dist/
+tmp/
+coverage/

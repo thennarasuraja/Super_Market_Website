@@ -1,0 +1,21 @@
+td{
+    padding-left: 20px;
+}
+
+.Add-Product:hover{
+    background-color: rgb(69, 69, 231);
+}
+.Buy-Product:hover{
+    background-color:rgb(247, 70, 70);
+}
+.add-product{
+    width: 800px;
+    height: 300px;
+    padding: 20px;
+    background-color:white; 
+    border-radius: 8px;
+} 
+.fixed-screen{
+    backdrop-filter: blur(12px);
+    z-index: 70px;
+}
